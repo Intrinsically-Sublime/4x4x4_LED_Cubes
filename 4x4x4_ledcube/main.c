@@ -123,7 +123,7 @@ int main (void)
 // Custom Routine
 void custom_routine (int effect)
 {
-		int delay = 1000;
+		int speed = 1200;
 	switch (effect)
 	{
 		// Time between effects
@@ -132,42 +132,42 @@ void custom_routine (int effect)
 		// Lights all the layers one by one leaving only the top layer light
 		case 0:
 			// (speed, wait between fill and empty, layers to leave light)
-			custom_loadbar(1000,3000,3); // Leave the top layer light
-			delay_ms(delay*2); // Hold top layer light for longer than normal
+			custom_loadbar(speed,(speed*3),3); // Leave the top layer light
+			delay_ms(speed*2); // Hold top layer light for longer than normal
 			break;
 			
 		// Rain voxels down and send out ripples on the bottom plane
 		case 1:
 			// (z, voxel count, speed, wait between raindrops,speed of ripples,invert ripples 1/0)
-			custom_rain(3,24,1000,200,800,0); // Rain 24 drops down
+			custom_rain(3,24,speed,(speed*0.2),(speed*0.333),0); // Rain 24 drops down
 			break;
 			
 		// Fireworks
 		case 2:
 			// (iterations, speed, wait between fireworks,speed for explosion)
-			fireworks(20,700,1000,500);
-			delay_ms(delay);
+			fireworks(20,(speed*0.6),(speed*0.5),500);
+			delay_ms(speed);
 			break;
 			
 		// Bounce a plane up and down 
 		case 3:
 			// (axis, direction, speed, iterations)
-			custom_flyplane("z",0,1000,4); // Start at bottom
-			delay_ms(delay);
+			custom_flyplane("z",0,speed,4); // Start at bottom
+			delay_ms(speed);
 			break;
 			
 		// Light all the layers one by one
 		case 4:
 			// (speed, wait between fill and empty, layers to leave light)
-			custom_loadbar(1000,3000,0); // Leave all layers light
-			delay_ms(delay);
+			custom_loadbar(speed,(speed*3),0); // Leave all layers light
+			delay_ms(speed);
 			break;
 			
 		// Unset all 64 voxels in a random order.
 		case 5:
 			// (speed, state)
-			random_filler2(200,0);
-			delay_ms(delay);
+			random_filler2((speed*0.2),0);
+			delay_ms(speed);
 			break;
 
 		// Set x number of random voxels then unset them.
@@ -175,102 +175,104 @@ void custom_routine (int effect)
 		// Speed accelerates and then decelerates
 		case 6:
 			// (voxel count, speed, acceleration)
-			custom_random_2(20, 400, 5);
-			delay_ms(delay);
+			custom_random_2(20, (speed*0.333), 5);
+			delay_ms(speed);
 			break;
 			
 		// A pixel bouncing around randomly
 		case 7:
 			// blink
-			boingboing(150,500,0x03,0x01);
-			delay_ms(delay);
+			// Iterations, delay, 
+			boingboing(150,(speed*0.5),0x03,0x01);
+			delay_ms(speed);
 			break;
 		
 		// Set all 64 voxels in a random order.
 		case 8:
-			random_filler2(200,1);
-			delay_ms(delay);
+			// speed
+			random_filler2((speed*0.2),1);
+			delay_ms(speed);
 			break;
 
 		// Clear middle two Z layers randomly
 		case 9:
 			// (speed, state, z1, z2, z3, z4, total voxels to clear)
-			random_layer_filler (400,0,1,2,-1,-1,32);
-			delay_ms(delay*2);
+			random_layer_filler ((speed*0.333),0,1,2,-1,-1,32);
+			delay_ms(speed*2);
 			break;
 
 		// Clear part of top and bottom two Z layers randomly
 		case 10:
 			// (speed, state, z1, z2, z3, z4, total voxels to clear)
-			random_layer_filler (400,0,0,-1,-1,3,22);
-			delay_ms(delay*2);
+			random_layer_filler ((speed*0.333),0,0,-1,-1,3,22);
+			delay_ms(speed*2);
 			break;
 
 
 		// Send voxels randomly back and forth along the Z axis
 		case 11:
 			// (iterations, speed, pause)
-			sendvoxels_rand_z(150,400,500);
-			delay_ms(delay);
+			sendvoxels_rand_z(150,(speed*0.333),(speed*0.5));
+			delay_ms(speed);
 			break;
 
 		// A snake randomly bounce around the cube.
 		case 12:
 			// snake
-			boingboing(150,500,0x03,0x03);
+			boingboing(150,(speed*0.5),0x03,0x03);
 			break;
 		
 		// A coordinate bounces randomly around the cube
 		// For every position the status of that voxel is toggled.
 		case 13:
 			// toggle
-			boingboing(150,500,0x03,0x02);
+			boingboing(150,(speed*0.5),0x03,0x02);
 			break;
 			
 		// Spinning spiral
 		case 14:
 			// (direction, iterations, delay)
-			effect_spiral(1,75,1000);
+			effect_spiral(1,75,(speed*0.7));
 			break;
 			
 		// Spinning plane
 		case 15:
 			// (direction, iterations, delay)
-			effect_spinning_plane(1,50,1000);
-			delay_ms(delay);
+			effect_spinning_plane(1,50,(speed*0.7));
+			delay_ms(speed);
 			break;
 			
 		// Bounce a plane in all the directions.
 		case 16:
 			// (axis, direction, speed)
-			flyplane("y",1,1000);
-			delay_ms(delay);
-			flyplane("x",1,1000);
-			delay_ms(delay);
-			flyplane("z",0,1000);
-			delay_ms(delay);
-			flyplane("y",0,1000);
-			delay_ms(delay);
-			flyplane("x",0,1000);
-			delay_ms(delay);
-			flyplane("z",1,1000);
-			delay_ms(delay);
+			flyplane("y",1,(speed*0.5));
+			delay_ms(speed);
+			flyplane("x",1,(speed*0.5));
+			delay_ms(speed);
+			flyplane("z",0,(speed*0.5));
+			delay_ms(speed);
+			flyplane("y",0,(speed*0.5));
+			delay_ms(speed);
+			flyplane("x",0,(speed*0.5));
+			delay_ms(speed);
+			flyplane("z",1,(speed*0.5));
+			delay_ms(speed);
 			break;
 				
 		// Light all the layers one by one
 		case 17:
 			// (speed, wait between fill and empty, layers to leave light)
-			custom_loadbar(1000,3000,0); // Leave all layers light
-			delay_ms(delay);
+			custom_loadbar(speed,(speed*2),0); // Leave all layers light
+			delay_ms(speed);
 			break;
 			
 		// Dissolve layers one by one from top leaving the bottom layer for the next loop 
 		case 18:
 			// (speed, state, z1, z2, z3, z4, total voxels to clear)
-			random_layer_filler (400,0,3,-1,-1,-1,16);
-			random_layer_filler (400,0,2,-1,-1,-1,16);
-			random_layer_filler (400,0,1,-1,-1,-1,16);
-			delay_ms(delay);
+			random_layer_filler ((speed*0.333),0,3,-1,-1,-1,16);
+			random_layer_filler ((speed*0.333),0,2,-1,-1,-1,16);
+			random_layer_filler ((speed*0.333),0,1,-1,-1,-1,16);
+			delay_ms(speed);
 			break;
 			
 	}
