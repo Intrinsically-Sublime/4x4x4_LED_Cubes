@@ -16,7 +16,7 @@ void sendvoxel_z (int x, int y, int z, int delay);
 void sendplane_rand_z (int z, int delay, int wait);
 void blinky(void);
 void blinky2(void);
-void flyplane (char* plane,unsigned char direction, int delay);
+void flyplane (unsigned char plane,int direction, int delay);
 void loadbar(int delay);
 void random_1 (int iterations, int voxels, int delay);
 void random_2 (void);
@@ -318,7 +318,7 @@ void loadbar(int delay)
 	}
 }
 
-void flyplane (char* plane,unsigned char direction, int delay)
+void flyplane (unsigned char plane, int direction, int delay)
 {
 	int i,ii;
 	

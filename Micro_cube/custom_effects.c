@@ -15,7 +15,7 @@ void random_layer_filler (int delay, int state, int z1, int z2, int z3, int z4, 
 void custom_rain (unsigned char z, int voxels, int delay, int wait, int ripple, int invert);
 void send_rain_voxel_z (unsigned char x, unsigned char y, unsigned char z, int delay, int splash);
 void fireworks (int iterations, int delay, int wait, int explode);
-void custom_flyplane (unsigned char plane,unsigned char direction, int delay, int iterations);
+void custom_flyplane (unsigned char plane,int direction, int delay, int iterations);
 
 // Light all leds layer by layer,
 // then unset layer by layer
@@ -329,11 +329,11 @@ void fireworks (int iterations, int delay, int wait, int explode)
 }
 
 
-void custom_flyplane (unsigned char plane,unsigned char direction, int delay, int iterations)
+void custom_flyplane (unsigned char plane, int direction, int delay, int iterations)
 {
 	int i,ii;
 	
-	unsigned char loop = iterations;
+	int loop = iterations;
 	
 	fill(0x00);
 	

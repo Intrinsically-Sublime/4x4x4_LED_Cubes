@@ -122,16 +122,16 @@ void custom_routine (int effect)
 			
 		// Fireworks
 		case 2:
-			// (iterations, speed, wait between fireworks,speed for explosion)
-			fireworks(20,(speed*0.6),(speed*0.5),500);
+			// (iterations, speed of vertical voxel, wait between fireworks,speed of explosion)
+			fireworks(20,(speed*0.6),(speed*0.5),(speed*0.333));
 			delay_ms(speed);
 			break;
 			
 		// Bounce a plane up and down 
 		case 3:
 			// (axis, direction, speed, iterations)
-			custom_flyplane("z",0,speed,4); // Start at bottom
-			delay_ms(speed);
+//			custom_flyplane("z",0,speed,4); // Start at bottom
+//			delay_ms(speed);
 			break;
 			
 		// Light all the layers one by one
@@ -154,7 +154,7 @@ void custom_routine (int effect)
 		case 6:
 			// (voxel count, speed, acceleration)
 			custom_random_2(20, (speed*0.333), 5);
-			delay_ms(speed);
+			delay_ms(speed*0.5);
 			break;
 			
 		// A pixel bouncing around randomly
@@ -176,13 +176,13 @@ void custom_routine (int effect)
 		case 9:
 			// (speed, state, z1, z2, z3, z4, total voxels to clear)
 			random_layer_filler ((speed*0.333),0,1,2,-1,-1,32);
-			delay_ms(speed*2);
+			delay_ms(speed*0.5);
 			break;
 
 		// Clear part of top and bottom two Z layers randomly
 		case 10:
 			// (speed, state, z1, z2, z3, z4, total voxels to clear)
-			random_layer_filler ((speed*0.333),0,0,-1,-1,3,22);
+			random_layer_filler ((speed*0.333),0,0,-1,-1,3,24);
 			delay_ms(speed*2);
 			break;
 
@@ -191,7 +191,7 @@ void custom_routine (int effect)
 		case 11:
 			// (iterations, speed, pause)
 			sendvoxels_rand_z(150,(speed*0.333),(speed*0.5));
-			delay_ms(speed);
+			delay_ms(speed*0.5);
 			break;
 
 		// A snake randomly bounce around the cube.
@@ -223,18 +223,18 @@ void custom_routine (int effect)
 		// Bounce a plane in all the directions.
 		case 16:
 			// (axis, direction, speed)
-			flyplane("y",1,(speed*0.5));
-			delay_ms(speed);
-			flyplane("x",1,(speed*0.5));
-			delay_ms(speed);
-			flyplane("z",0,(speed*0.5));
-			delay_ms(speed);
-			flyplane("y",0,(speed*0.5));
-			delay_ms(speed);
-			flyplane("x",0,(speed*0.5));
-			delay_ms(speed);
-			flyplane("z",1,(speed*0.5));
-			delay_ms(speed);
+//			flyplane("y",1,(speed*0.5));
+//			delay_ms(speed);
+//			flyplane("x",1,(speed*0.5));
+//			delay_ms(speed);
+//			flyplane("z",0,(speed*0.5));
+//			delay_ms(speed);
+//			flyplane("y",0,(speed*0.5));
+//			delay_ms(speed);
+//			flyplane("x",0,(speed*0.5));
+//			delay_ms(speed);
+//			flyplane("z",1,(speed*0.5));
+//			delay_ms(speed);
 			break;
 				
 		// Light all the layers one by one
@@ -284,7 +284,7 @@ ISR(TIMER1_COMPA_vect)
 	// = PC1, PB5, PD7, PB0
 	// = PC0, PB4, PB3, PB2
 	
-	// order bits need to be mapped in
+	// order temp bits need to be mapped to the ports
 	
 	// PORTD 4, 0, 1, 2, 5, 6, 7, 10 PORTB 11, 3, 15, 14, 13, 9, PORTC 12, 8
 		
