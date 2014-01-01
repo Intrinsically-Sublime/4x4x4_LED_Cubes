@@ -41,6 +41,7 @@
 
 # MCU name
 MCU = atmega168
+#MCU = attiny13
 
 
 # Processor frequency.
@@ -49,6 +50,8 @@ MCU = atmega168
 #     calculate timings. Do NOT tack on a 'UL' at the end, this will be done
 #     automatically to create a 32-bit value in your source code.
 F_CPU = 16000000
+#1.8432*8*1000000
+#F_CPU = 14745600
 
 # Output format. (can be srec, ihex, binary)
 FORMAT = ihex
@@ -59,7 +62,7 @@ TARGET = main
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c
+SRC = $(TARGET).c draw.c effect.c launch_effect.c gameoflife.c 
 
 
 # List Assembler source files here.
@@ -73,7 +76,7 @@ ASRC =
 
 
 # Optimization level, can be [0, 1, 2, 3, s]. 
-#     0 = turn off optimization. s = optimize for size.
+#     0 = turn off optimization. s = optimize for size.ubuntu
 #     (Note: 3 is not always the best optimization level. See avr-libc FAQ.)
 OPT = s
 
@@ -505,5 +508,7 @@ clean_list :
 build elf hex eep lss sym coff extcoff \
 clean clean_list program debug gdb-config
 
-
+install:
+	avrdude -c usbtiny -p m32 -B 1 -U flash:w:main.hex
+	avrdude -c usbtiny -p m32 -B 1 -U eeprom:w:main.eep
 
